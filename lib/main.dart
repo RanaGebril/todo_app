@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/App_theme_data.dart';
 import 'package:todo_app/home_screen.dart';
@@ -5,28 +6,36 @@ import 'package:todo_app/providers/My_provider.dart';
 import 'package:todo_app/splash_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp( ChangeNotifierProvider(
-      create:(context) => MyProvider(),
-      child: MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(ChangeNotifierProvider(
+      create: (context) => MyProvider(),
+      child: EasyLocalization(
+          supportedLocales: [Locale('en'), Locale('ar')],
+          path: 'assets/translations',
+          child: MyApp())));
 }
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   @override
-
   Widget build(BuildContext context) {
-    var provider_object=Provider.of<MyProvider>(context);
+    var provider_object = Provider.of<MyProvider>(context);
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: AppThemeData.light_mode,
-      darkTheme:AppThemeData.dark_mode ,
+      darkTheme: AppThemeData.dark_mode,
       themeMode: provider_object.AppTheme,
-      initialRoute: SplashScreen.routeName ,
+      initialRoute: SplashScreen.routeName,
       routes: {
-        SplashScreen.routeName:(context)=> SplashScreen(),
-        HomeScreen.routeName:(context)=> HomeScreen()
+        SplashScreen.routeName: (context) => SplashScreen(),
+        HomeScreen.routeName: (context) => HomeScreen()
       },
     );
   }

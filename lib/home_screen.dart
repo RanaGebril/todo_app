@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/tabs/list_tab.dart';
 import 'package:todo_app/tabs/setting/setting_tab.dart';
@@ -21,8 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
       //backgroundColor: Appcolors.primary_light,
       appBar: AppBar(
         title: Text(
-          "ToDo List",
-        ),
+        selectedIndex==1
+            ?'setting'.tr()
+            :'appBarTitle'.tr()
+                ),
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(

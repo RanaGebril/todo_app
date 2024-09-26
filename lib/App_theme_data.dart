@@ -38,12 +38,14 @@ class AppThemeData{
        bodyLarge: TextStyle(
          fontSize: 22,
          fontWeight: FontWeight.w700,
-         color: Appcolors.greenColor
+         color: Appcolors.greenColor,
+         fontFamily: "Poppins"
        ),
        bodyMedium: TextStyle(
            fontSize: 20,
            fontWeight: FontWeight.w400,
-           color: Appcolors.blackFontColor
+           color: Appcolors.blackFontColor,
+           fontFamily: "Poppins"
        ),
        bodySmall: TextStyle(
            fontSize: 18,

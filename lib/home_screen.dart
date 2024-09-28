@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/tabs/list_tab.dart';
+import 'package:todo_app/bottom_sheets/add_task_bottom_sheet.dart';
 import 'package:todo_app/tabs/setting/setting_tab.dart';
+import 'package:todo_app/tabs/tasks/tasks_tab.dart';
 import 'AppColors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -51,7 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+           showModalBottomSheet(context: context,
+              builder: (context) {
+                return AddTaskBottomSheet();
+              },);
+        },
         child: Icon(Icons.add, color: Appcolors.whiteColor, size: 35),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -62,5 +68,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<Widget> taps = [ListTab(), SettingTab()];
+  List<Widget> taps = [TasksTab(), SettingTab()];
 }

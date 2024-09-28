@@ -55,7 +55,7 @@ class AppThemeData{
        displayLarge: TextStyle(
            fontSize: 18,
            fontWeight: FontWeight.w400,
-           color: Appcolors.whiteColor
+           color: Appcolors.blueColor
        ),
        displayMedium: TextStyle(
            fontSize: 15,
@@ -75,7 +75,7 @@ class AppThemeData{
        labelMedium: TextStyle(
          fontSize: 12,
          fontWeight: FontWeight.w400,
-         color: Appcolors.blackFontColor
+         color: Appcolors.grayColor2
        )
 
      ),
@@ -137,7 +137,7 @@ class AppThemeData{
         displayLarge: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w400,
-            color: Appcolors.whiteColor
+            color: Appcolors.blueColor
         ),
         displayMedium: TextStyle(
             fontSize: 15,
@@ -157,7 +157,7 @@ class AppThemeData{
         labelMedium: TextStyle(
             fontSize: 12,
             fontWeight: FontWeight.w400,
-            color: Appcolors.whiteColor
+            color: Appcolors.grayColor2
         )
 
     ),

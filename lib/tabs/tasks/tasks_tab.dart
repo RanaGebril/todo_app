@@ -11,7 +11,7 @@ class TasksTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    "addNewTask": "Add New Task"
+    var provider_object = Provider.of<MyProvider>(context);
     return Column(
       children: [
         SizedBox(

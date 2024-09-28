@@ -7,5 +7,9 @@
   "mode": "Mode",
   "light": "Light",
   "dark": "Dark",
-  "addNewTask": "Add New Task"
+  "addNewTask": "Add New Task",
+  "enterNewTask": "Enter new task",
+  "description" : "Description",
+  "selectTime": "Select Time",
+  "add": "Add"
 }

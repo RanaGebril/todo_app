@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/bottom_sheets/add_task_bottom_sheet.dart';
+import 'package:todo_app/bottom_sheets/add_Task_bottom_sheet.dart';
 import 'package:todo_app/tabs/setting/setting_tab.dart';
 import 'package:todo_app/tabs/tasks/tasks_tab.dart';
 import 'AppColors.dart';
@@ -54,8 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
            showModalBottomSheet(context: context,
+             // to allow it to space bigger than defult
+              isScrollControlled: true,
               builder: (context) {
-                return AddTaskBottomSheet();
+                return Padding(
+                  //increase padding equal to the size add from the bottom
+                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddTaskBottomSheet(),
+                );
               },);
         },
         child: Icon(Icons.add, color: Appcolors.whiteColor, size: 35),

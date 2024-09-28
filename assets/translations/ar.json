@@ -7,5 +7,9 @@
   "mode": "المظهر",
   "light": "نهاري",
   "dark": "ليلي",
-  "addNewTask": "إضافه مهمه جديده"
+  "addNewTask": "إضافه مهمه جديده",
+  "addNewTask": "أضف مهمه جديده",
+  "description": "الوصف",
+  "selectTime": "حدد الوقت",
+  "add": "إضافه"
 }

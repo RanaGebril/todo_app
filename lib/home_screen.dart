@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
            showModalBottomSheet(context: context,
              // to allow it to space bigger than defult
+             backgroundColor: Colors.transparent,
               isScrollControlled: true,
               builder: (context) {
                 return Padding(

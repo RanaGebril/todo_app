@@ -1,12 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/App_theme_data.dart';
+import 'package:todo_app/firebase_options.dart';
 import 'package:todo_app/home_screen.dart';
 import 'package:todo_app/providers/My_provider.dart';
 import 'package:todo_app/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  // to initialize before run app
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 

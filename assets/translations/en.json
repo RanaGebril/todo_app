@@ -11,5 +11,6 @@
   "enterNewTask": "Enter new task",
   "description" : "Description",
   "selectTime": "Select Time",
-  "add": "Add"
+  "add": "Add",
+  "noDescription": "Without description"
 }

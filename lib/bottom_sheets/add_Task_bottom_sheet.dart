@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
 import 'package:todo_app/bottom_sheets/text_field_ui.dart';
+import 'package:todo_app/firebase_functions.dart';
+import 'package:todo_app/models/task_model.dart';
 import 'package:todo_app/providers/My_provider.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
@@ -17,6 +19,8 @@ class AddTaskBottomSheet extends StatefulWidget {
 class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   @override
   DateTime selectedDate = DateTime.now();
+  var titleController = TextEditingController();
+  var sunTitleController = TextEditingController();
 
   Widget build(BuildContext context) {
     //instead of call provider two times in & out build use consumer to access provider
@@ -41,9 +45,59 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 10),
-              TextFieldUi(label: "enterNewTask".tr()),
+              TextFormField(
+                controller: titleController,
+                style: Theme.of(context).textTheme.bodyMedium,
+                decoration: InputDecoration(
+                  label: Text(
+                    "enterNewTask".tr(),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Appcolors.grayColor1,
+                        ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide:
+                        BorderSide(color: Appcolors.blueColor, width: 2),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide:
+                        BorderSide(color: Appcolors.blueColor, width: 2),
+                  ),
+                ),
+                cursorColor: Appcolors.grayColor1,
+              ),
               SizedBox(height: 20),
-              TextFieldUi(label: "description".tr()),
+              TextFormField(
+                controller: sunTitleController,
+                style: Theme.of(context).textTheme.bodyMedium,
+                decoration: InputDecoration(
+                  label: Text(
+                    "description".tr(),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Appcolors.grayColor1,
+                        ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide:
+                        BorderSide(color: Appcolors.blueColor, width: 2),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide:
+                        BorderSide(color: Appcolors.blueColor, width: 2),
+                  ),
+                ),
+                cursorColor: Appcolors.grayColor1,
+              ),
               SizedBox(height: 20),
               Text(
                 'selectTime'.tr(),
@@ -68,7 +122,23 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               Container(
                 width: 120,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      TaskModel task = TaskModel(
+                          title: titleController.text,
+                          subTitle: sunTitleController.text,
+                          date: selectedDate.millisecondsSinceEpoch);
+                      if(task.title!=""){
+                        FirebaseFunctions.addTask(task).then(
+                              (value) => Navigator.pop(context),
+                        );
+                      }
+                    //   else{
+                    //     return print("empty");
+                    //   }
+                    //   if(task.subTitle==""){
+                    //     task.subTitle="noDescription".tr().toString();
+                    //   }
+                    // },
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(10),
                         textStyle: Theme.of(context)

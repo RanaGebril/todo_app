@@ -11,5 +11,6 @@
   "enterNewTask": "أضف مهمه جديده",
   "description": "الوصف",
   "selectTime": "حدد الوقت",
-  "add": "إضافه"
+  "add": "إضافه",
+  "noDescription": "بدون وصف"
 }

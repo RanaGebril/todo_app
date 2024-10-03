@@ -85,6 +85,7 @@ class AppThemeData{
           borderRadius: BorderRadius.circular(30),
           side: BorderSide(color: Appcolors.whiteColor, width: 3)),
     ),
+
   );
   static ThemeData dark_mode=ThemeData(
       scaffoldBackgroundColor: Appcolors.primary_dark,

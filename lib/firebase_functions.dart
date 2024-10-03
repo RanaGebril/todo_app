@@ -24,4 +24,12 @@ class FirebaseFunctions{
     //add attribute to document
     return docRef.set(task);
   }
+
+  static  Future<QuerySnapshot<TaskModel>> getTask(){
+    //create Tasks collection
+    var collection=getTaskCollection();
+
+    //get task from collection
+    return collection.get();
+  }
 }

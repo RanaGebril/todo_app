@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
+import 'package:todo_app/models/task_model.dart';
 import 'package:todo_app/providers/My_provider.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({super.key});
+  TaskModel task;
+  TaskItem({required this.task,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +17,9 @@ class TaskItem extends StatelessWidget {
         color: provider_object.AppTheme == ThemeMode.light
             ? Appcolors.whiteColor
             : Appcolors.secondary_dark,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(25),
       ),
-      height: 115,
+      height: 100,
       child: Slidable(
         startActionPane: ActionPane(motion: DrawerMotion(),
             children: [
@@ -48,11 +50,11 @@ class TaskItem extends StatelessWidget {
               ),
             ]),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(15),
           child: Row(
             children: [
               Container(
-                height: 70,
+                height: 80,
                 width: 3,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -65,12 +67,12 @@ class TaskItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Task Title",
+                    task.title,
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "Task Description",
+                    task.subTitle,
                     style: Theme.of(context).textTheme.labelMedium,
                   )
                 ],

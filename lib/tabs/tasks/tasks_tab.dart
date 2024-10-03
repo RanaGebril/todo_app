@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
+import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/providers/My_provider.dart';
 import 'package:todo_app/tabs/tasks/task_item.dart';
 
@@ -32,21 +33,62 @@ class TasksTab extends StatelessWidget {
           fontSize: 25,
           height: MediaQuery.of(context).size.height * 0.12,
         ),
-        // Expanded(
-        //   child: Padding(
-        //     padding: const EdgeInsets.all(20),
-        //     child: ListView.separated(
-        //         itemBuilder: (context, index) {
-        //           return TaskItem();
-        //         },
-        //         separatorBuilder: (context, index) {
-        //           return SizedBox(
-        //             height: 15,
-        //           );
-        //         },
-        //         itemCount: 30),
-        //   ),
-        // )
+        FutureBuilder(
+          future: FirebaseFunctions.getTask(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator(color: Appcolors.blueColor));
+
+
+            } else if (snapshot.hasError) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Text(
+                    "errorMessage".tr(),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(onPressed: () {}, child: Text("tryAgain".tr()))
+                ],
+              );
+            }
+
+            //convert from list of type ... to list of task model
+            //e => each single task,doc
+            var tasks = snapshot.data?.docs.map((e) => e.data()).toList() ?? [];
+            if (tasks.isNotEmpty) {
+              return Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        return TaskItem(task: tasks[index]);
+                      },
+                      separatorBuilder: (context, index) {
+                        return SizedBox(
+                          height: 15,
+                        );
+                      },
+                      itemCount: tasks.length),
+                ),
+              );
+            }
+            else {
+              return Center(
+                child: Text(
+                  "noTasks".tr(),
+                   style: Theme.of(context).textTheme.bodySmall,
+                ),
+              );
+            }
+          },
+        )
       ],
     );
   }

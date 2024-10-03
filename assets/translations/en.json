@@ -12,5 +12,8 @@
   "description" : "Description",
   "selectTime": "Select Time",
   "add": "Add",
+  "errorMessage": "there ia an error",
+  "tryAgain": "Try again",
+  "noTasks": "No tasks",
   "noDescription": "Without description"
 }

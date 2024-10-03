@@ -12,5 +12,8 @@
   "description": "الوصف",
   "selectTime": "حدد الوقت",
   "add": "إضافه",
+  "errorMessage": "يوجد خطأ",
+  "tryAgain": "إعاده المحاوله",
+  "noTasks": "لا يوجد مهام",
   "noDescription": "بدون وصف"
 }

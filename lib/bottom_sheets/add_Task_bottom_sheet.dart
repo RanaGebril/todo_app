@@ -129,16 +129,9 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                           // when adding the task start the time from the start of the day
                           date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch);
                       if(task.title!=""){
-                        FirebaseFunctions.addTask(task).then(
-                              (value) => Navigator.pop(context),
-                        );
+                        FirebaseFunctions.addTask(task).then;
+                        Navigator.pop(context);
                       }
-                    //   else{
-                    //     return print("empty");
-                    //   }
-                    //   if(task.subTitle==""){
-                    //     task.subTitle="noDescription".tr().toString();
-                    //   }
                      },
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(10),

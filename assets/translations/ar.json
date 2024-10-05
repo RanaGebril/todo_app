@@ -15,5 +15,8 @@
   "errorMessage": "يوجد خطأ",
   "tryAgain": "إعاده المحاوله",
   "noTasks": "لا يوجد مهام",
-  "noDescription": "بدون وصف"
+  "noDescription": "بدون وصف",
+  "done": "تم!",
+  "delete": "حذف",
+  "edit": "تعديل"
 }

@@ -126,7 +126,8 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                       TaskModel task = TaskModel(
                           title: titleController.text,
                           subTitle: sunTitleController.text,
-                          date: selectedDate.millisecondsSinceEpoch);
+                          // when adding the task start the time from the start of the day
+                          date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch);
                       if(task.title!=""){
                         FirebaseFunctions.addTask(task).then(
                               (value) => Navigator.pop(context),

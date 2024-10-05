@@ -7,8 +7,15 @@ import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/providers/My_provider.dart';
 import 'package:todo_app/tabs/tasks/task_item.dart';
 
-class TasksTab extends StatelessWidget {
-  const TasksTab({super.key});
+class TasksTab extends StatefulWidget {
+  TasksTab({super.key});
+
+  @override
+  State<TasksTab> createState() => _TasksTabState();
+}
+
+class _TasksTabState extends State<TasksTab> {
+  DateTime date=DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +26,16 @@ class TasksTab extends StatelessWidget {
           height: 5,
         ),
         CalendarTimeline(
-          initialDate: DateTime.now(),
+          initialDate: date,
           firstDate: DateTime.now().subtract(Duration(days: 365)),
           lastDate: DateTime.now().add(Duration(days: 365)),
-          onDateSelected: (date) => print(date),
+          // check if the calender time line selected date = date of the task
+          onDateSelected:(taskdateInCalender) {
+            date=taskdateInCalender;
+            setState(() {
+
+            });
+          },
           leftMargin: 20,
           monthColor: Colors.blueGrey,
           dayColor: Appcolors.blueColor,
@@ -34,7 +47,7 @@ class TasksTab extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.12,
         ),
         FutureBuilder(
-          future: FirebaseFunctions.getTask(),
+          future: FirebaseFunctions.getTask(date),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator(color: Appcolors.blueColor));

@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
+import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/models/task_model.dart';
 import 'package:todo_app/providers/My_provider.dart';
 
-class TaskItem extends StatelessWidget {
+class TaskItem extends StatefulWidget {
   TaskModel task;
   TaskItem({required this.task,super.key});
 
+  @override
+  State<TaskItem> createState() => _TaskItemState();
+}
+
+class _TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
     var provider_object=Provider.of<MyProvider>(context);
@@ -17,7 +23,10 @@ class TaskItem extends StatelessWidget {
           children: [
             SlidableAction(
               onPressed: (context) {
+                FirebaseFunctions.deleteTask(widget.task.id);
+                setState(() {
 
+                });
               },
               backgroundColor: Appcolors.redColor,
               foregroundColor: Colors.white,
@@ -67,14 +76,14 @@ class TaskItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      task.title,
+                      widget.task.title,
                       style: Theme.of(context).textTheme.displayLarge,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                     ),
                     SizedBox(height: 10),
                     Text(
-                      task.subTitle,
+                      widget.task.subTitle,
                       style: Theme.of(context).textTheme.labelMedium,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 5,

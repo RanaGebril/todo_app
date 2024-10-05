@@ -26,12 +26,20 @@ class FirebaseFunctions{
     return docRef.set(task);
   }
 
-  static  Future<QuerySnapshot<TaskModel>> getTask(DateTime data){
+  static  Stream<QuerySnapshot<TaskModel>> getTask(DateTime data){
     //create Tasks collection
     var collection=getTaskCollection();
 
     //get task from collection
     //where => filter tasks by the date field
-    return collection.where("date",isEqualTo: DateUtils.dateOnly(data).millisecondsSinceEpoch).get();
+    return collection.where("date",isEqualTo: DateUtils.dateOnly(data).millisecondsSinceEpoch).snapshots();
+
   }
+
+  static deleteTask(String id){
+    var collection=getTaskCollection();
+    collection.doc(id).delete();
+  }
+
+
 }

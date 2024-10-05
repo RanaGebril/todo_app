@@ -46,8 +46,8 @@ class _TasksTabState extends State<TasksTab> {
           fontSize: 25,
           height: MediaQuery.of(context).size.height * 0.12,
         ),
-        FutureBuilder(
-          future: FirebaseFunctions.getTask(date),
+        StreamBuilder(
+          stream: FirebaseFunctions.getTask(date),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator(color: Appcolors.blueColor));

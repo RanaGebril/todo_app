@@ -8,6 +8,7 @@ import 'package:todo_app/home_screen.dart';
 import 'package:todo_app/providers/My_provider.dart';
 import 'package:todo_app/splash_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/tabs/tasks/edit_tab.dart';
 
 void main() async {
   // to initialize before run app
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashScreen.routeName,
       routes: {
         SplashScreen.routeName: (context) => SplashScreen(),
-        HomeScreen.routeName: (context) => HomeScreen()
+        HomeScreen.routeName: (context) => HomeScreen(),
+        EditTab.routeName: (context) => EditTab(),
       },
     );
   }

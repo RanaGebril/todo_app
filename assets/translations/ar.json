@@ -18,5 +18,7 @@
   "noDescription": "بدون وصف",
   "done": "تم!",
   "delete": "حذف",
-  "edit": "تعديل"
+  "edit": "تعديل",
+  "editTask": "تعديل المهمه",
+  "saveChanges": "حفظ التغيرات"
 }

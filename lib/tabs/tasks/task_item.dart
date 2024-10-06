@@ -6,6 +6,7 @@ import 'package:todo_app/AppColors.dart';
 import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/models/task_model.dart';
 import 'package:todo_app/providers/My_provider.dart';
+import 'package:todo_app/tabs/tasks/edit_tab.dart';
 
 class TaskItem extends StatefulWidget {
   TaskModel task;
@@ -50,7 +51,9 @@ class _TaskItemState extends State<TaskItem> {
             autoClose: true,
           ),
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              Navigator.pushNamed(context, EditTab.routeName,arguments: widget.task);
+            },
             backgroundColor: Appcolors.blueColor,
             foregroundColor: Colors.white,
             icon: Icons.edit,

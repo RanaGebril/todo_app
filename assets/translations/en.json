@@ -18,5 +18,7 @@
   "noDescription": "Without description",
   "done": "Done!",
   "delete": "Delete",
-  "edit": "Edit"
+  "edit": "Edit",
+  "editTask": "Edit Task",
+  "saveChanges" : "Save Changes"
 }

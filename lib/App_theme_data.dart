@@ -12,6 +12,10 @@ class AppThemeData{
         fontSize: 22,
          color: Appcolors.whiteColor,
       ),
+      iconTheme: IconThemeData(
+        color: Appcolors.whiteColor,
+        size: 30,
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
@@ -96,6 +100,10 @@ class AppThemeData{
           fontWeight: FontWeight.w700,
           fontSize: 22,
           color: Appcolors.primary_dark,
+        ),
+        iconTheme: IconThemeData(
+          color: Appcolors.whiteColor,
+          size: 30,
         ),
       ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

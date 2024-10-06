@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
-import 'package:todo_app/bottom_sheets/text_field_ui.dart';
 import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/models/task_model.dart';
 import 'package:todo_app/providers/My_provider.dart';
@@ -20,7 +19,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   @override
   DateTime selectedDate = DateTime.now();
   var titleController = TextEditingController();
-  var sunTitleController = TextEditingController();
+  var subTitleController = TextEditingController();
 
   Widget build(BuildContext context) {
     //instead of call provider two times in & out build use consumer to access provider
@@ -73,7 +72,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                controller: sunTitleController,
+                controller: subTitleController,
                 style: Theme.of(context).textTheme.bodyMedium,
                 decoration: InputDecoration(
                   label: Text(
@@ -125,7 +124,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                     onPressed: () {
                       TaskModel task = TaskModel(
                           title: titleController.text,
-                          subTitle: sunTitleController.text,
+                          subTitle: subTitleController.text,
                           // when adding the task start the time from the start of the day
                           date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch);
                       if(task.title!=""){

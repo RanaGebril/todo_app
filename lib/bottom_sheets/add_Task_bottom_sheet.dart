@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
@@ -125,13 +126,16 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                       TaskModel task = TaskModel(
                           title: titleController.text,
                           subTitle: subTitleController.text,
+                          //id of the user from auth
+                          userId: FirebaseAuth.instance.currentUser!.uid,
                           // when adding the task start the time from the start of the day
-                          date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch);
-                      if(task.title!=""){
+                          date: DateUtils.dateOnly(selectedDate)
+                              .millisecondsSinceEpoch);
+                      if (task.title != "") {
                         FirebaseFunctions.addTask(task).then;
                         Navigator.pop(context);
                       }
-                     },
+                    },
                     style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(10),
                         textStyle: Theme.of(context)

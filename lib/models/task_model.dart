@@ -4,33 +4,38 @@ class TaskModel {
   String subTitle;
   bool isDone;
   int date;
+  String userId;
 
-  TaskModel({
-    //value comes from parameters
-    this.id="",
-    required this.title,
-    required this.subTitle,
-    this.isDone=false,
-    required this.date});
+  TaskModel(
+      {
+      //value comes from parameters
+      this.id = "",
+      required this.title,
+      required this.subTitle,
+      this.isDone = false,
+      required this.date,
+      required this.userId});
 
   //named constructor
-  TaskModel.fromJson(Map<String,dynamic> json):this(
-    //override default constructor
-    //value comes from map
-        id: json["id"],
-        title: json["title"],
-        subTitle: json["subTitle"],
-        isDone: json["isDone"],
-        date: json["date"],
-  );
+  TaskModel.fromJson(Map<String, dynamic> json)
+      : this(
+            //override default constructor
+            //value comes from map
+            id: json["id"],
+            title: json["title"],
+            subTitle: json["subTitle"],
+            isDone: json["isDone"],
+            date: json["date"],
+            userId: json["userId"]);
 
-  Map<String,dynamic> toJson(){
-    return{
-      "id":id,
-      "title":title,
-      "subTitle":subTitle,
-      "isDone":isDone,
-      "date":date
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "title": title,
+      "subTitle": subTitle,
+      "isDone": isDone,
+      "date": date,
+      "userId": userId
     };
   }
 }

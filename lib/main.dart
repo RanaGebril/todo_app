@@ -6,6 +6,8 @@ import 'package:todo_app/App_theme_data.dart';
 import 'package:todo_app/firebase_options.dart';
 import 'package:todo_app/home_screen.dart';
 import 'package:todo_app/providers/My_provider.dart';
+import 'package:todo_app/register/creat_account.dart';
+import 'package:todo_app/register/log_in.dart';
 import 'package:todo_app/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/tabs/tasks/edit_tab.dart';
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) => SplashScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         EditTab.routeName: (context) => EditTab(),
+        CreateAccount.routeName: (context) => CreateAccount(),
+        LogIn.routeName: (context) => LogIn()
       },
     );
   }

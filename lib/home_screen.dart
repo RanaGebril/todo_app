@@ -1,6 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/bottom_sheets/add_Task_bottom_sheet.dart';
+import 'package:todo_app/providers/My_provider.dart';
+import 'package:todo_app/register/log_in.dart';
 import 'package:todo_app/tabs/setting/setting_tab.dart';
 import 'package:todo_app/tabs/tasks/tasks_tab.dart';
 import 'AppColors.dart';
@@ -19,14 +24,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider_object=Provider.of<MyProvider>(context);
     return Scaffold(
-      //backgroundColor: Appcolors.primary_light,
       appBar: AppBar(
         title: Text(
         selectedIndex==1
             ?'setting'.tr()
-            :'appBarTitle'.tr()
+            :"${'appBarTitle'.tr()} ${provider_object.userModel?.userName}"
                 ),
+        actions: [
+          IconButton(onPressed: (){
+            FirebaseAuth.instance.signOut();
+            Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => LogIn())  , (route) => false,);
+          }, icon: Icon(Icons.logout))
+        ],
       ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(

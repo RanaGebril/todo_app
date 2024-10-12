@@ -19,7 +19,7 @@ class TextFieldUi extends StatelessWidget {
       children: [
         Text(
           lable,
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         TextFormField(
           controller: formController,

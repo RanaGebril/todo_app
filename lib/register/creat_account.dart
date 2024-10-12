@@ -110,7 +110,7 @@ class CreateAccount extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, LogIn.routeName),
+        onTap: () => Navigator.pop,
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Text.rich(

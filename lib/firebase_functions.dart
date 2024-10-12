@@ -95,7 +95,7 @@ class FirebaseFunctions {
   }
 
   /////////////////////////////////users/////////////////////////
-  static CollectionReference<UserModel> getUsersColletion() {
+  static CollectionReference<UserModel> getUsersCollection() {
     return FirebaseFirestore.instance
         .collection("Users")
         .withConverter<UserModel>(fromFirestore: (snapshot, _) {
@@ -106,9 +106,16 @@ class FirebaseFunctions {
   }
 
   static void addUser(UserModel user) {
-    var collection = getUsersColletion();
+    var collection = getUsersCollection();
     // id from auth
     var docRef = collection.doc(user.id);
     docRef.set(user);
+  }
+
+   static Future<UserModel?> getUserData(String userId)async{
+    var collection=getUsersCollection();
+    DocumentSnapshot<UserModel> userDoc=await collection.doc(userId).get();
+    return userDoc.data();
+
   }
 }

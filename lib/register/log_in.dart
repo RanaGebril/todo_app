@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/AppColors.dart';
 import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/home_screen.dart';
+import 'package:todo_app/register/creat_account.dart';
 import 'package:todo_app/register/dialog_ui.dart';
 import 'package:todo_app/register/text_field_ui.dart';
 
@@ -90,7 +91,7 @@ class LogIn extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: GestureDetector(
-        onTap: () => Navigator.pop(context),
+        onTap: () => Navigator.pushNamed(context,CreateAccount.routeName),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Text.rich(

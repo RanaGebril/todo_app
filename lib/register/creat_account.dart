@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
 import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/home_screen.dart';
+import 'package:todo_app/providers/My_provider.dart';
 import 'package:todo_app/register/dialog_ui.dart';
 import 'package:todo_app/register/log_in.dart';
 import 'package:todo_app/register/text_field_ui.dart';
@@ -20,6 +22,7 @@ class CreateAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider_object = Provider.of<MyProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("signUp".tr()),
@@ -71,7 +74,9 @@ class CreateAccount extends StatelessWidget {
                         emailController.text, passwordController.text,
                         age: int.parse(ageController.text),
                         phone: phoneController.text,
-                        userName: userNameController.text, onSuccess: () {
+                        userName: userNameController.text,
+                        onSuccess: () async {
+                          await provider_object.userData;
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => HomeScreen()),

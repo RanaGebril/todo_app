@@ -85,6 +85,7 @@ class FirebaseFunctions {
           onSuccess();
         } else {
           onError("Please verify your email before logging in.");
+          credential.user?.sendEmailVerification();
         }
       }
     } on FirebaseAuthException catch (e) {
@@ -112,10 +113,10 @@ class FirebaseFunctions {
     docRef.set(user);
   }
 
-   static Future<UserModel?> getUserData(String userId)async{
-    var collection=getUsersCollection();
-    DocumentSnapshot<UserModel> userDoc=await collection.doc(userId).get();
+  static Future<UserModel?> getUserData() async {
+    var collection = getUsersCollection();
+    DocumentSnapshot<UserModel> userDoc =
+        await collection.doc(FirebaseAuth.instance.currentUser!.uid).get();
     return userDoc.data();
-
   }
 }

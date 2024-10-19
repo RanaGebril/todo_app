@@ -18,11 +18,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  WidgetsFlutterBinding.ensureInitialized();
+
+  //localization
   await EasyLocalization.ensureInitialized();
 
   //local storage no server
   await FirebaseFirestore.instance.enableNetwork();
+
   runApp(ChangeNotifierProvider(
       create: (context) => MyProvider(),
       child: EasyLocalization(

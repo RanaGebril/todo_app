@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/firebase_functions.dart';
@@ -7,7 +8,7 @@ import 'package:todo_app/models/user_model.dart';
 class MyProvider extends ChangeNotifier {
   ThemeMode AppTheme = ThemeMode.light;
 
-  //To store user data and not ti login each time the app opened
+  //To store user data and not to login each time the app opened
   UserModel? userModel;
 
   // data for the user who log in stored at user class in firebase
@@ -18,15 +19,16 @@ class MyProvider extends ChangeNotifier {
     getTheme();
 
     //check if the user already log in and return user object
-    fireStoreUser=FirebaseAuth.instance.currentUser;
-    if(fireStoreUser!=null){
+    fireStoreUser = FirebaseAuth.instance.currentUser;
+    if (fireStoreUser != null) {
       userData();
       notifyListeners();
     }
   }
 
-  userData()async{
-userModel=await FirebaseFunctions.getUserData(fireStoreUser!.uid);
+  Future<void>userData() async {
+    userModel = await FirebaseFunctions.getUserData();
+    notifyListeners();
   }
 
   // Asynchronously loads the theme preference from SharedPreferences

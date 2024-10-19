@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/AppColors.dart';
 import 'package:todo_app/firebase_functions.dart';
 import 'package:todo_app/home_screen.dart';
+import 'package:todo_app/providers/My_provider.dart';
 import 'package:todo_app/register/creat_account.dart';
 import 'package:todo_app/register/dialog_ui.dart';
 import 'package:todo_app/register/text_field_ui.dart';
@@ -14,6 +16,7 @@ class LogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider_object = Provider.of<MyProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("logIn".tr()),
@@ -49,11 +52,14 @@ class LogIn extends StatelessWidget {
                     FirebaseFunctions.logIn(
                       emailController.text,
                       passwordController.text,
-                      onSuccess: () {
+                      onSuccess: () async {
+                        // get user data before navigate
+                        await provider_object.userData;
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (route) => false,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()),
+                              (route) => false,
                         );
                       },
                       onError: (message) {
@@ -91,7 +97,7 @@ class LogIn extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: GestureDetector(
-        onTap: () => Navigator.pushNamed(context,CreateAccount.routeName),
+        onTap: () => Navigator.pushNamed(context, CreateAccount.routeName),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Text.rich(

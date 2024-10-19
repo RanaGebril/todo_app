@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(
         selectedIndex==1
             ?'setting'.tr()
-            :"${'appBarTitle'.tr()} ${provider_object.userModel?.userName}"
+            :"${'appBarTitle'.tr()} ${provider_object.userModel!.userName?? " "} ",
                 ),
         actions: [
           IconButton(onPressed: (){

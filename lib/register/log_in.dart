@@ -35,7 +35,7 @@ class LogIn extends StatelessWidget {
               TextFieldUi(
                   formController: passwordController,
                   lable: "password".tr(),
-                  keyboardtype: TextInputType.visiblePassword),
+                  keyboardtype: TextInputType.visiblePassword,),
               SizedBox(height: 10),
               Center(
                 child: ElevatedButton(
@@ -54,7 +54,7 @@ class LogIn extends StatelessWidget {
                       passwordController.text,
                       onSuccess: () async {
                         // get user data before navigate
-                        await provider_object.userData;
+                        await provider_object.userData();
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(

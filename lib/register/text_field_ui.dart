@@ -5,11 +5,13 @@ class TextFieldUi extends StatelessWidget {
   var formController;
   String lable;
   var keyboardtype;
+  String? Function(String?)? validator;
 
   TextFieldUi(
       {required this.formController,
       required this.lable,
       this.keyboardtype,
+        this.validator,
       super.key});
 
   @override
@@ -24,6 +26,7 @@ class TextFieldUi extends StatelessWidget {
         TextFormField(
           controller: formController,
           keyboardType: keyboardtype,
+          validator: validator,
           style: Theme.of(context).textTheme.labelMedium,
           decoration: InputDecoration(
             border: OutlineInputBorder(

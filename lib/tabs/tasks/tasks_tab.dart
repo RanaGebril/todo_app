@@ -67,7 +67,9 @@ class _TasksTabState extends State<TasksTab> {
                   SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text("tryAgain".tr()))
+                  ElevatedButton(onPressed: () {
+
+                  }, child: Text("tryAgain".tr()))
                 ],
               );
             }
